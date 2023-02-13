@@ -1,7 +1,5 @@
-import { HeaderBackground } from "./styles";
+import { HeaderBackground } from './styles'
 
 export function Header() {
-  return (
-    <HeaderBackground />
-  )
+  return <HeaderBackground />
 }
