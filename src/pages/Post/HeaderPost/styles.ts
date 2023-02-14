@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const MainContainer = styled.main`
   width: 54rem;
-  /* height: 13.25rem; */
   background: ${({ theme }) => theme['base-profile']};
   border-radius: 10px;
   margin: -5.5rem auto 0 auto;
@@ -10,20 +9,11 @@ export const MainContainer = styled.main`
   display: flex;
 `
 
-export const Avatar = styled.img`
-  border-radius: 8px;
-  width: 100%;
-  max-width: 9.25rem;
-  height: 9.25rem;
-  max-height: 9.25rem;
-  margin-right: 2rem;
-`
-
 export const Content = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  justify-content: space-between;
+  width: 100%;
 
   div {
     display: flex;
@@ -31,12 +21,6 @@ export const Content = styled.div`
     justify-content: space-between;
     width: 100%;
 
-    h1 {
-      flex: 1;
-      display: block;
-      margin-top: 0.5rem;
-      color: ${({ theme }) => theme['base-title']};
-    }
     a {
       align-self: start;
       color: ${({ theme }) => theme.blue};
@@ -50,8 +34,13 @@ export const Content = styled.div`
     }
   }
 
-  p {
-    margin-top: 0.5rem;
+  h1 {
+    flex: 1;
+    display: block;
+    margin-top: 1.25rem;
+
+    font-size: 1.5rem;
+    font-weight: bold;
     color: ${({ theme }) => theme['base-title']};
   }
 `
@@ -67,7 +56,7 @@ export const RedeSocialContainer = styled.ul`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${({ theme }) => theme['base-subtitle']};
+    color: ${({ theme }) => theme['base-span']};
 
     svg {
       color: ${({ theme }) => theme['base-label']};

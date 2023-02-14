@@ -31,6 +31,7 @@ export const ContainerPost = styled.section`
   }
 
   &:hover {
+    transition: border 0.2s;
     border-color: ${({ theme }) => theme['base-label']};
     cursor: pointer;
   }
