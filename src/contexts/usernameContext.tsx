@@ -5,6 +5,7 @@ type UsernameContext = {
   username: string
   issues: Array<string>
   repository: any
+  account: Object
 }
 
 // eslint-disable-next-line no-redeclare
@@ -25,24 +26,30 @@ export function UsernameProvider({ children }: UsernameProviderProps) {
   // const username = 'kleberfreire'
   // const repository = 'github-blog'
   const [issues, setIssues] = useState([])
+  const [account, setAccount] = useState({})
 
   // https://api.github.com/repos/rocketseat-education/reactjs-github-blog-challenge/issues/1
 
-  async function fetchIssues(query: string) {
+  async function fetchIssues(query: string = 'boas praticas') {
     const response = await api.get(
       `/search/issues?q=${query}%20repo:${username}/${repository}`,
     )
 
-    setIssues(response.data.items)
-    console.log(response.data.items)
+    setIssues(response.data)
+  }
+
+  async function fetchAccount() {
+    const response = await api.get(`/users/${username}`)
+    setAccount(response.data)
   }
 
   useEffect(() => {
-    fetchIssues('boas praticas')
+    fetchIssues()
+    fetchAccount()
   }, [])
 
   return (
-    <UsernameContext.Provider value={{ username, issues, repository }}>
+    <UsernameContext.Provider value={{ username, issues, repository, account }}>
       {children}
     </UsernameContext.Provider>
   )

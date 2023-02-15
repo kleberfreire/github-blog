@@ -6,7 +6,6 @@ interface PostsContainerProps {
 }
 
 export function PostsContainer({ data = [] }: PostsContainerProps) {
-  console.log('issues', data)
   return (
     <Container>
       {data.length > 0 &&
@@ -16,6 +15,7 @@ export function PostsContainer({ data = [] }: PostsContainerProps) {
             title={post.title}
             updatedAt={post.updated_at}
             bodyData={post.body}
+            numberId={post.number}
           />
         ))}
     </Container>

@@ -8,35 +8,47 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
-export function Main() {
+interface MainProps {
+  login: string
+  company: string
+  avatar: string
+  followers: string
+  name: string
+  bio: string
+}
+
+export function Main({
+  login,
+  company,
+  avatar,
+  followers,
+  name,
+  bio,
+}: MainProps) {
   return (
     <MainContainer>
-      <Avatar src={avataPersonImg} />
+      <Avatar src={avatar || avataPersonImg} />
       <Content>
         <div>
-          <h1>Cameron Williamson</h1>
+          <h1>{name}</h1>
           <a href="#">
             Github <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </a>
         </div>
-        <p>
-          Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu
-          viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat
-          pulvinar vel mass.
-        </p>
+        <p>{bio}</p>
 
         <RedeSocialContainer>
           <li>
             <FontAwesomeIcon icon={faGithub} />
-            cameronwll
+            {login}
           </li>
           <li>
             <FontAwesomeIcon icon={faBuilding} />
-            Rocketseat
+            {company || 'Não informado'}
           </li>
           <li>
             <FontAwesomeIcon icon={faUserGroup} />
-            32 seguidores
+            {followers} seguidores
           </li>
         </RedeSocialContainer>
       </Content>

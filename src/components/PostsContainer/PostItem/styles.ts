@@ -26,13 +26,28 @@ export const ContainerPost = styled.section`
     }
   }
 
-  p {
-    margin-top: 1.25rem;
-  }
-
   &:hover {
     transition: border 0.2s;
     border-color: ${({ theme }) => theme['base-label']};
     cursor: pointer;
+  }
+`
+
+export const Content = styled.div`
+  /* width: 100%; */
+  /* overflow: hidden; */
+  /* padding: 0 2rem; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  overflow: hidden;
+
+  * {
+    display: none;
+  }
+
+  & > p:nth-child(1) {
+    margin-top: 1.25rem;
+    display: block;
+    position: relative;
   }
 `

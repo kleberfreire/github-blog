@@ -5,6 +5,7 @@ import { Header } from '../../components/Header'
 import { UsernameContext } from '../../contexts/usernameContext'
 import api from '../../lib/axios'
 import { HeaderPost } from './HeaderPost'
+import { Content } from './styles'
 
 export function Post() {
   const [data, setData] = useState()
@@ -17,7 +18,6 @@ export function Post() {
     )
 
     setData(response.data)
-    console.log(response.data)
   }
 
   function isValidId(value: string | undefined) {
@@ -33,8 +33,18 @@ export function Post() {
   return (
     <>
       <Header />
-      <HeaderPost />
-      {data && <ReactMarkdown>{data?.body}</ReactMarkdown>}
+      <HeaderPost
+        login={data?.user.login}
+        url={data?.html_url}
+        title={data?.title}
+        createdAt={data?.created_at || new Date()}
+        comments={data?.comments}
+      />
+      {data && (
+        <Content>
+          <ReactMarkdown>{data.body}</ReactMarkdown>
+        </Content>
+      )}
     </>
   )
 }

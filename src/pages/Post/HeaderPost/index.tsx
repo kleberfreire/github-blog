@@ -1,5 +1,4 @@
 import { MainContainer, Content, RedeSocialContainer } from './styles'
-import ReactMarkdown from 'react-markdown'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -9,8 +8,27 @@ import {
   faComment,
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import {
+  formatDateDistanceToNow,
+  formatForDatetime,
+} from '../../../utils/formatDate'
 
-export function HeaderPost() {
+interface HeaderPostProps {
+  login: string
+  url: string
+  title: string
+  createdAt: string
+  comments: number
+}
+export function HeaderPost({
+  login,
+  url,
+  title,
+  createdAt,
+  comments,
+}: HeaderPostProps) {
+  console.log(formatForDatetime(createdAt))
+
   return (
     <MainContainer>
       <Content>
@@ -18,23 +36,26 @@ export function HeaderPost() {
           <a href="/">
             <FontAwesomeIcon icon={faChevronLeft} /> voltar
           </a>
-          <a href="#">
+          <a href={url} target="_blank" rel="noreferrer">
             ver no Github <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </a>
         </div>
-        <h1>JavaScript data types and data structures</h1>
+        <h1>{title}</h1>
 
         <RedeSocialContainer>
           <li>
             <FontAwesomeIcon icon={faGithub} />
-            cameronwll
+            {login}
           </li>
           <li>
             <FontAwesomeIcon icon={faBuilding} />
-            <time dateTime="2008-02-14 20:00">Há 1 dia</time>
+            <time dateTime={formatForDatetime(createdAt)}>
+              {formatDateDistanceToNow(createdAt)}
+            </time>
           </li>
           <li>
-            <FontAwesomeIcon icon={faComment} />5 comentários
+            <FontAwesomeIcon icon={faComment} />
+            {comments} comentários
           </li>
         </RedeSocialContainer>
       </Content>
