@@ -6,7 +6,7 @@ import { UsernameContext } from '../../contexts/usernameContext'
 import { SearchForm } from './components/SearchForm'
 
 export function Home() {
-  const { issues, account } = useContext(UsernameContext)
+  const { issues, account, fetchIssues } = useContext(UsernameContext)
   const { login, company, avatar_url: avatar, followers, name, bio } = account
   return (
     <>
@@ -19,7 +19,10 @@ export function Home() {
         name={name}
         bio={bio}
       />
-      <SearchForm publicationAmount={issues.total_count as number} />
+      <SearchForm
+        publicationAmount={issues.total_count as number}
+        handleSearch={fetchIssues}
+      />
       <PostsContainer data={issues.items} />
     </>
   )
